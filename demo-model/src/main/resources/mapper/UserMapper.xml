@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.transaction.demo.mybatis.mapper.UserMapper">
+
+    <resultMap type="com.transaction.demo.mybatis.entity.UserInfo" id="UserInfoMap">
+        <result property="age" column="age" javaType="com.transaction.constant.TestEnum"
+                typeHandler="com.transaction.demo.mybatis.handler.BaseEnumTypeHandler" />
+    </resultMap>
+
+    <!-- Read -->
+    <select id="queryUserInfo" resultMap="UserInfoMap">
+        SELECT * FROM user_info WHERE id=#{id}
+    </select>
+
+</mapper>
