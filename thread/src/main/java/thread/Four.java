@@ -1,4 +1,4 @@
-package dome.thread;
+package thread;
 
 /**
  * 第四章

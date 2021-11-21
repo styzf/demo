@@ -16,7 +16,7 @@
  */
 package com.transaction.demo.mybatis.entity;
 
-import com.transaction.constant.TestEnum;
+import com.transaction.constant.AgeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -45,7 +45,7 @@ public class UserInfo implements Serializable {
     /**
      * 年龄
      */
-    private TestEnum age;
+    private AgeEnum age;
 
     /**
      * 身高

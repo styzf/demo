@@ -23,6 +23,8 @@
         <module>start</module>
         <module>common</module>
         <module>design-pattern</module>
+        <module>thread</module>
+        <module>demo-xmind</module>
     </modules>
 
     <dependencies>

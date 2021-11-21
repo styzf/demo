@@ -1,10 +1,14 @@
-package dome.thread;
+package thread;
 
-import sun.misc.Cache;
+import lombok.extern.slf4j.Slf4j;
+import org.omg.CORBA.portable.ValueOutputStream;
 
 import java.nio.channels.InterruptibleChannel;
 import java.nio.channels.Selector;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 第三章内容
@@ -15,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class Three {
     
     public static void main(String[] args) throws Exception {
+//        joinDemo();
 //        interruptedDemoPro();// 这个有点复杂
 //        interruptedDemo();//该程序输出结果，有一个为true的标识
 //        isInterrupted2();
@@ -24,13 +29,73 @@ public class Three {
     }
     
     /**
+     * join方法会使当前线程一直等待下去，
+     * 直到被另外的线程中断，或者join线程执行结束？
+     * 可是应该是对应的线程进入了sleep状态
+     *
+     * 如果一个线程生命周期结束，那么调用其join方法的当前线程会被阻塞吗？
+     * 不会，这个程序为当前线程调用，最后执行到9跳过结束生命周期，可以看到main方法执行了
+     *
+     * @throws InterruptedException
+     */
+    private static void joinDemo() throws InterruptedException {
+        List<Thread> threadList = IntStream.range(1, 4)
+                .mapToObj(Three::create).collect(Collectors.toList());
+        threadList.forEach(Thread::start);
+        // 不断的join，另外一个线程会等待另外一个线程生命周期结束后再执行
+//        注释掉的话，就会混合着输出了
+        for (Thread thread: threadList) {
+            thread.join();
+        }
+    
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + "#" + i);
+        }
+    }
+    
+    private static Thread create(int seq) {
+        return new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+//                最后一段直接跳过
+//                if (i == 9) {
+//                    continue;
+//                }
+                System.out.println(Thread.currentThread().getName() + "#" + i);
+                shortSleep();
+            }
+        }, String.valueOf(seq));
+    }
+    
+    /**
+     * 线程睡眠
+     */
+    private static void shortSleep() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * 1、是一个可中断的方法，对线程interrupt操作会导致线程的interrupt标识被抹除
+     * join有三个基础方法
+     * 指定毫秒数，指定时间后，线程会退出阻塞状态
+     */
+    private static void join() throws InterruptedException {
+        Thread thread = new Thread();
+        thread.join();
+        thread.join(1L, 1);
+        thread.join(1L);
+    }
+    
+    /**
      * 思考
      * interrupted
      * interrupt
      * 这两个都是中断，可是一个会把标识设置为true，一个会为false，当后面有线程要调用可中断方法的时候
      * 如果标识为true的话，那么会被捕获到被中断的异常抛出
      */
-    
     private static void interruptedDemoPro() {
 //        抹去中断信号，后面在进入可中断方法，不会被捕获到中断信号
         System.out.println("1" + Thread.interrupted());

@@ -4,7 +4,7 @@
 <mapper namespace="com.transaction.demo.mybatis.mapper.UserMapper">
 
     <resultMap type="com.transaction.demo.mybatis.entity.UserInfo" id="UserInfoMap">
-        <result property="age" column="age" javaType="com.transaction.constant.TestEnum"
+        <result property="age" column="age" javaType="com.transaction.constant.AgeEnum"
                 typeHandler="com.transaction.demo.mybatis.handler.BaseEnumTypeHandler" />
     </resultMap>
 
