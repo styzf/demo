@@ -25,6 +25,7 @@
         <module>design-pattern</module>
         <module>thread</module>
         <module>demo-xmind</module>
+        <module>lambda</module>
     </modules>
 
     <dependencies>
