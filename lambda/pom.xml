@@ -11,6 +11,9 @@
 
     <artifactId>lambda</artifactId>
 
+    <name>lambda表达式学习模块</name>
+    <description>学习lambda基础语法，以及实际工作中的使用场景</description>
+
     <dependencies>
         <dependency>
             <groupId>com.transaction</groupId>

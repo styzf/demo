@@ -36,6 +36,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
     
     @Override
+    public UserInfo getUserInfoById(String id) {
+        return userMapper.queryUserInfo(id);
+    }
+    
+    @Override
     @Transactional
     public void add(UserInfo user) {
         userMapper.insert(user);

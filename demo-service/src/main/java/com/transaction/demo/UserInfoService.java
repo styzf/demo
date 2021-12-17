@@ -17,6 +17,8 @@ public interface UserInfoService {
 
     void getUserInfoById(String id, Model model);
     
+    UserInfo getUserInfoById(String id);
+    
     /**
      * 新增数据
      * @param user

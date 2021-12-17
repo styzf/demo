@@ -10,7 +10,9 @@ public enum AgeEnum implements EnumUtil.BaseEnum<Integer> {
     /**
      * 枚举测试列表
      */
-    TEST_EIGHTEEN(18, "永远的18岁");
+    TEST_EIGHTEEN(18, "永远的18岁"),
+    TEST_THIRTY(30, "30岁的老头子"),
+    ;
     
     AgeEnum(Integer type, String desc) {
         this.type = type;

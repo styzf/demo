@@ -9,10 +9,10 @@ import com.styzf.dome.strategy.SystemStrategy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 import java.util.function.Function;
 
 /**
+ * 表驱动优化if...else...
  * @author styzf
  * @date 2021/11/21 10:17
  */
@@ -24,24 +24,25 @@ public class One {
         printDO = one.rountPrintByMap(new PrintDO());
     }
     
-    private static final Map<PrintEnum, Function<PrintDO, PrintDO>> MAP = new HashMap<>();
+    private static final Map<PrintEnum, Function<PrintDO, PrintDO>> Function_MAP = new HashMap<>();
     
     {
-        MAP.put(PrintEnum.SYS_PRINT, this::systemPrint);
-        MAP.put(PrintEnum.LASER_PRINTER_PRINT, this::laserPrint);
-        MAP.put(PrintEnum.HELLO_WORLD_PRINT, this::easyPrint);
-        MAP.put(PrintEnum.PRINTER_PRINT, this::easyPrint);
+        Function_MAP.put(PrintEnum.SYS_PRINT, this::systemPrint);
+        Function_MAP.put(PrintEnum.LASER_PRINTER_PRINT, this::laserPrint);
+        Function_MAP.put(PrintEnum.HELLO_WORLD_PRINT, this::easyPrint);
+        Function_MAP.put(PrintEnum.PRINTER_PRINT, this::easyPrint);
     }
     
     /**
      * 优化后路由
+     * 表驱动
      * @param printDO
      * @return
      */
     public PrintDO rountPrintByMap(PrintDO printDO) {
         int i = RandomUtil.randomInt(PrintEnum.values().length);
         PrintEnum printEnum = PrintEnum.values()[i];
-        Function<PrintDO, PrintDO> function = MAP.get(printEnum);
+        Function<PrintDO, PrintDO> function = Function_MAP.get(printEnum);
         if (Objects.isNull(function)) {
             throw new RuntimeException("未找到对应的实现");
         }
