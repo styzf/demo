@@ -22,15 +22,15 @@ public class CacheTest {
     @Test
     @Transactional
     public void mainTest() {
-        UserInfo userInfo = userInfoService.getUserInfoById("1");
-        log.info("mainTest的结果：{}", userInfo.getAge().getDesc());
+        UserInfo userInfo1 = userInfoService.getUserInfoById("1");
+        log.info("mainTest的结果：{}", userInfo1.getAge().getDesc());
         testOthGet();
-        log.info("调用testOthGet的结果：{}", userInfo.getAge().getDesc());
+        log.info("调用testOthGet的结果：{}", userInfo1.getAge().getDesc());
     }
     
     private void testOthGet() {
-        UserInfo userInfo = userInfoService.getUserInfoById("1");
-        userInfo.setAge(AgeEnum.TEST_THIRTY);
-        log.info("testOthGet的结果：{}", userInfo.getAge().getDesc());
+        UserInfo userInfo2 = userInfoService.getUserInfoById("1");
+        userInfo2.setAge(AgeEnum.TEST_THIRTY);
+        log.info("testOthGet的结果：{}", userInfo2.getAge().getDesc());
     }
 }

@@ -24,13 +24,13 @@ public class One {
         printDO = one.rountPrintByMap(new PrintDO());
     }
     
-    private static final Map<PrintEnum, Function<PrintDO, PrintDO>> Function_MAP = new HashMap<>();
+    private static final Map<PrintEnum, Function<PrintDO, PrintDO>> FUNCTION_MAP = new HashMap<>();
     
     {
-        Function_MAP.put(PrintEnum.SYS_PRINT, this::systemPrint);
-        Function_MAP.put(PrintEnum.LASER_PRINTER_PRINT, this::laserPrint);
-        Function_MAP.put(PrintEnum.HELLO_WORLD_PRINT, this::easyPrint);
-        Function_MAP.put(PrintEnum.PRINTER_PRINT, this::easyPrint);
+        FUNCTION_MAP.put(PrintEnum.SYS_PRINT, this::systemPrint);
+        FUNCTION_MAP.put(PrintEnum.LASER_PRINTER_PRINT, this::laserPrint);
+        FUNCTION_MAP.put(PrintEnum.HELLO_WORLD_PRINT, this::easyPrint);
+        FUNCTION_MAP.put(PrintEnum.PRINTER_PRINT, this::easyPrint);
     }
     
     /**
@@ -42,7 +42,7 @@ public class One {
     public PrintDO rountPrintByMap(PrintDO printDO) {
         int i = RandomUtil.randomInt(PrintEnum.values().length);
         PrintEnum printEnum = PrintEnum.values()[i];
-        Function<PrintDO, PrintDO> function = Function_MAP.get(printEnum);
+        Function<PrintDO, PrintDO> function = FUNCTION_MAP.get(printEnum);
         if (Objects.isNull(function)) {
             throw new RuntimeException("未找到对应的实现");
         }

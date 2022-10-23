@@ -5,8 +5,8 @@ import com.transaction.demo.mybatis.entity.UserInfo;
 import com.transaction.demo.mybatis.mapper.UserMapper;
 import com.transaction.demo.mybatis.util.ApplicationContextHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +28,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public void getUserInfoById(String id, Model model) {
         //search by id, get UserInfo
         UserInfo user = userMapper.queryUserInfo(id);
+        user.setId("fafa永远都是fafa");
+        UserInfo tar = new UserInfo();
+        BeanUtils.copyProperties(user, tar);
         log.info(user.toString());
 //        model.addAttribute("name", user.getId())
 //                .addAttribute("age", user.getAge())
