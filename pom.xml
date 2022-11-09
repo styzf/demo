@@ -26,6 +26,7 @@
         <module>thread</module>
         <module>demo-xmind</module>
         <module>lambda</module>
+        <module>generation-template</module>
     </modules>
 
     <dependencies>
