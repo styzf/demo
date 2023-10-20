@@ -41,5 +41,30 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
         </dependency>
+        <!--调用链生成-->
+        <dependency>
+            <groupId>com.github.adrninistrator</groupId>
+            <artifactId>java-all-call-graph</artifactId>
+            <version>0.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.adrninistrator</groupId>
+            <artifactId>java-callgraph2</artifactId>
+            <version>0.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId> com.itextpdf</groupId >
+            <artifactId>itextpdf</artifactId >
+            <version>5.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId> com.itextpdf</groupId >
+            <artifactId>itext-asian</artifactId>
+            <version>5.2.0</version>
+        </dependency>
     </dependencies>
 </project>
