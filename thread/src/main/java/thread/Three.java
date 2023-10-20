@@ -18,6 +18,8 @@ import java.util.stream.IntStream;
  */
 public class Three {
     
+    private ThreadLocal<Object> context;
+    
     public static void main(String[] args) throws Exception {
 //        joinDemo();
 //        interruptedDemoPro();// 这个有点复杂
